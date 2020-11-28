@@ -1,0 +1,18 @@
+POST http://localhost:7070/login
+Content-Type: application/json
+
+{
+  "username": "zhangsan",
+  "password":"1234"
+}
+
+###
+POST http://localhost:7070/customer/page
+Content-Type: application/json
+
+{
+  "pageNum": 1,
+  "pageSize": 5
+}
+
+###

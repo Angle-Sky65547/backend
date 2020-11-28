@@ -1,0 +1,20 @@
+server:
+  port: 7070
+spring:
+  application:
+    name: backend
+  mvc:
+    format:
+      date-time: yyyy-MM-dd HH:mm:ss
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+  datasource:
+    url: jdbc:mysql://192.168.8.66:3306/test1?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.jdbc.Driver
+mybatis:
+  mapper-locations: classpath:/mappers/*.xml
+pagehelper:
+  auto-dialect: MYSQL #配置分页的方言为mysql

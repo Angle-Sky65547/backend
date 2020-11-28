@@ -1,0 +1,11 @@
+version: '3.1'
+services:
+  db:
+    image: mysql:5.6
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./test1.sql:/docker-entrypoint-initdb.d/init.sql   #配置容器第一次启动时执行的sql脚本
+      - ./data/:/var/lib/mysql              #配置容器数据存储的挂载位置

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace 配置的是绑定的dao接口的类的全限定名-->
+<mapper namespace="com.neuedu.backend.dao.AirTypeDao">
+
+    <!--mybatis mapper xml中，id对应接口方法名。，resultTyPE对应返回数据类型-->
+    <select id="findList" resultType="com.neuedu.backend.model.AirType">
+        select
+        air_autoid id,
+        air_code code,
+        air_fnumber fnumber,
+        air_cnumber cnumber ,
+        air_unumber unumber,
+        air_totalnumber totalnumber
+
+        from t_airtype
+        <where>
+            flag = '0'
+            <if test="code!=null and code!=''">
+                and air_code = #{code}
+            </if>
+        </where>
+    </select>
+
+    <update id="deleteById">
+        update
+        t_airtype
+        set
+        flag = "1"
+        where
+        air_autoid= #{id}
+    </update>
+
+    <insert id="insert">
+        insert into
+        t_airtype (air_code,air_fnumber,air_cnumber,air_unumber,air_totalnumber)
+        values (
+        #{code},
+        #{fnumber},
+        #{cnumber},
+        #{unumber},
+        #{totalnumber}
+        )
+    </insert>
+</mapper>

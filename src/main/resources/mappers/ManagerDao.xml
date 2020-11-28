@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace 配置的是绑定的dao接口的类的全限定名-->
+<mapper namespace="com.neuedu.backend.dao.ManagerDao">
+
+    <!--mybatis mapper xml中，id对应接口方法名。，resultTyPE对应返回数据类型-->
+    <select id="findList" resultType="com.neuedu.backend.model.Manager">
+        select
+        man_autoid id,
+        man_account account,
+        man_pwd pwd,
+        man_id idcard,
+        man_telephone telephone,
+        man_email email
+        from t_manager
+
+        where
+        flag = '0'
+    </select>
+
+    <insert id="insert">
+        insert into
+        t_manager (man_account,man_pwd,man_id,man_telephone,man_email)
+        values (
+        #{account},
+        #{pwd},
+        #{idcard},
+        #{telephone},
+        #{email}
+        )
+    </insert>
+
+    <update id="deleteById">
+        update
+        t_manager
+        set
+        flag = "1"
+        where
+        man_autoid= #{id}
+    </update>
+</mapper>

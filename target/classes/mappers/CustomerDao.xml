@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace 配置的是绑定的dao接口的类的全限定名-->
+<mapper namespace="com.neuedu.backend.dao.CustomerDao">
+
+    <!--mybatis mapper xml中，id对应接口方法名。，resultTyPE对应返回数据类型-->
+    <select id="findList" resultType="com.neuedu.backend.model.Customer">
+        select
+        cus_autoid id,
+        cus_account account,
+        cus_pwd password,
+        cus_id identity ,
+        cus_sex gender,
+        cus_telnumber telNumber,
+        cus_email email
+        from t_customer
+        <where>
+            flag = '0'
+            <if test="account!=null and account!=''">
+                and cus_account = #{account}
+            </if>
+        </where>
+    </select>
+
+    <update id="deleteById">
+        update
+        t_customer
+        set
+        flag = "1"
+        where
+        cus_autoid= #{id}
+    </update>
+</mapper>

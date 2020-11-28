@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace 配置的是绑定的dao接口的类的全限定名-->
+<mapper namespace="com.neuedu.backend.dao.FlightDao">
+
+    <!--mybatis mapper xml中，id对应接口方法名。，resultTyPE对应返回数据类型-->
+    <select id="findList" resultType="com.neuedu.backend.model.Flight">
+        select
+        fli_autoid id,
+        com_code code,
+        fli_no no,
+        fli_baddress baddress ,
+        fli_aaddress aaddress,
+        fli_btime btime,
+        fli_atime atime
+
+        from t_flight
+        <where>
+            flag = '0'
+            <if test="no!=null and no!=''">
+                and fli_no = #{no}
+            </if>
+        </where>
+    </select>
+
+    <update id="deleteById">
+        update
+        t_flight
+        set
+        flag = "1"
+        where
+        fli_autoid= #{id}
+    </update>
+
+    <update id="updateById">
+        update
+        t_flight
+        set
+        fli_flag = "1"
+        where
+        fli_autoid= #{id}
+    </update>
+
+    <insert id="insert">
+        insert into
+        t_flight (com_code,fli_no,fli_baddress,fli_aaddress,fli_btime,fli_atime)
+        values (
+        #{code},
+        #{no},
+        #{baddress},
+        #{aaddress},
+        #{btime},
+        #{atime}
+        )
+    </insert>
+</mapper>
